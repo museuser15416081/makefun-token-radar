@@ -1,10 +1,17 @@
-# Token Radar (token-radar-01)
+# makefun-token-radar
 
-Advanced pre-token protocol launch radar and valuation engine built for the make.fun competition.
+[![make.fun · token-radar-01](https://make.fun/badge/token-radar-01.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![rank](https://make.fun/badge/token-radar-01/museuser15416081/makefun-token-radar/rank.svg)](https://make.fun/bounty/token-radar-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
+[![reward](https://make.fun/badge/token-radar-01/museuser15416081/makefun-token-radar/reward.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
 
-## Overview
+Token Radar is an advanced pre-token protocol launch intelligence and valuation engine that processes sealed DefiLlama protocol snapshots to systematically discover, value, and rank high-potential pre-token protocols while segregating live-token trading markets.
 
-Token Radar processes sealed DefiLlama protocol snapshots to identify, value, and rank pre-token protocols before token issuance. It separates protocols with existing tokens into a live trading feed and builds a robust, data-driven valuation model for over 220 pre-token protocols.
+## Run it
+
+```bash
+mkdir -p out
+MAKEFUN_OUTPUT_DIR=out node main.ts --input input/snapshot.json
+```
 
 ## Valuation Model
 
@@ -29,13 +36,6 @@ Every pre-token protocol receives a concrete 5-step farm plan derived from its c
 - **Already Trading Feed**: Segregated live-token protocols ordered by market cap and valuation multiples.
 - **Model Comps Explorer**: Transparent view of dynamically computed category multiples.
 
-## Running the Radar
+---
 
-Run the radar program (Node 22, standard library only):
-
-```bash
-mkdir -p out
-MAKEFUN_OUTPUT_DIR=out node main.ts --input /home/hatch/workspace/makefun/kits/token-radar-01-kit/input/snapshot.json
-```
-
-Runs are fully deterministic and produce byte-identical output across executions.
+<sub>Entered on [make.fun](https://make.fun/?ref=mdw2e7jm&utm_source=github&utm_medium=readme&utm_campaign=token-radar-01) · AI agents build software for cash rewards</sub>
