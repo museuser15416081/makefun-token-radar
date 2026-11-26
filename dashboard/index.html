@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar: Advanced Pre-Token Launch Intelligence</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <div class="mark"></div>
+      <span class="brand-name">TOKEN-RADAR-01</span>
+    </div>
+    <div class="top-meta" id="top-meta">
+      <!-- populated by app.js -->
+    </div>
+  </header>
+
+  <section class="lede">
+    <div>
+      <h1>Token Launch Radar & Valuation Engine</h1>
+      <p>Ranking pre-token protocols using data-driven category multiples, TVL, 7-day growth momentum, maturity track record, and chain breadth derived directly from DefiLlama snapshot metrics. Protocols with existing tokens are segregated into the live trading feed.</p>
+    </div>
+    <div class="facts" id="summary-facts">
+      <!-- populated by app.js -->
+    </div>
+  </section>
+
+  <nav class="nav-tabs" aria-label="Main views">
+    <button id="tab-board" class="tab-btn active" data-view="board">Pre-Token Radar Board</button>
+    <button id="tab-live" class="tab-btn" data-view="live">Already Trading (<span id="live-count">0</span>)</button>
+    <button id="tab-model" class="tab-btn" data-view="model">Valuation Model & Comps</button>
+  </nav>
+
+  <div id="view-board" class="view-panel">
+    <div class="controls">
+      <div class="field">
+        <label for="search-input">Search Protocol</label>
+        <input type="text" id="search-input" placeholder="Name, slug, category, chain...">
+      </div>
+      <div class="field">
+        <label for="category-select">Category</label>
+        <select id="category-select">
+          <option value="">All Categories</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="chain-select">Chain</label>
+        <select id="chain-select">
+          <option value="">All Chains</option>
+        </select>
+      </div>
+      <div class="field toggle-field">
+        <label>&nbsp;</label>
+        <label class="checkbox-label">
+          <input type="checkbox" id="watchlist-toggle"> Watchlist only (40)
+        </label>
+      </div>
+      <div class="count" id="row-count">Showing rows</div>
+    </div>
+
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th><button data-sort="rank">Rank</button></th>
+              <th><button data-sort="name">Protocol</button></th>
+              <th>Category</th>
+              <th>Chains</th>
+              <th><button data-sort="tvl">TVL</button></th>
+              <th><button data-sort="growth">7d Growth</button></th>
+              <th><button data-sort="age">Age</button></th>
+              <th><button data-sort="implied">Implied Value</button></th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="board-tbody">
+            <!-- rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-live" class="view-panel" hidden>
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Protocol</th>
+              <th>Category</th>
+              <th>Chains</th>
+              <th>Market Cap</th>
+              <th>TVL</th>
+              <th>FDV / TVL</th>
+              <th>7d Change</th>
+            </tr>
+          </thead>
+          <tbody id="live-tbody">
+            <!-- live rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="view-model" class="view-panel" hidden>
+    <div class="panel model-panel">
+      <h2>Valuation Model Methodology & Category Multiples</h2>
+      <p class="lede-text">The implied valuation model uses a multi-factor formula built entirely from the sealed DefiLlama snapshot:</p>
+      <div class="formula-box">
+        <code>Implied Value = TVL &times; Category Multiple &times; Growth Multiplier &times; Maturity Multiplier &times; Chain Multiplier</code>
+      </div>
+      <div class="model-details-grid">
+        <div>
+          <h3>1. Category Multiples (Live Comps)</h3>
+          <p>Computed dynamically from the median market cap to TVL ratio of protocols with active tokens in each category within the snapshot. Clamped between 0.08x and 2.8x.</p>
+          <div id="category-multiples-list" class="multiples-list"></div>
+        </div>
+        <div>
+          <h3>2. Growth Momentum</h3>
+          <p>7-day TVL change percentage clamped between -50% and +100%, scaled by weight 0.4.</p>
+          <h3>3. Maturity & Track Record</h3>
+          <p>Age in days from `listed_at` to `as_of`, scaled from 0.7 to 1.0 (saturating at 3 years). Rewards enduring protocols without tokens.</p>
+          <h3>4. Chain Breadth</h3>
+          <p>1 + 0.04 &times; min(chains.count, 5), rewarding multi-chain deployment reach.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<dialog id="detail-modal" class="detail">
+  <div id="detail-content"></div>
+</dialog>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
